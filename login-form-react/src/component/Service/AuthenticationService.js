@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Axios from 'axios';
+import history from '../history'
 
 const API_URL = 'http://localhost:8080'
 
@@ -42,6 +44,8 @@ class AuthenticationService {
 
     logout() {
         sessionStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
+        Axios.get(`${API_URL}/api/candidates/logout`)
+        history.push("/")
     }
 
     isUserLoggedIn() {

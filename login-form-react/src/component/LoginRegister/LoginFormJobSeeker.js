@@ -12,6 +12,7 @@ import forgot from './forgot.png';
 import AuthenticationService from '../Service/AuthenticationService'
 import Modal from 'react-bootstrap/Modal'; 
 import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
 
 class Form extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class Form extends Component {
       email1: '',
       uname: '',
       id:'',
-      values: []
+      values: [],
        };
        this.handleSubmit=this.handleSubmit.bind(this);
        this.changeHandler=this.changeHandler.bind(this);
@@ -36,13 +37,17 @@ class Form extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-  
-    console.log(this.state.email)
+    const id='';
     AuthenticationService
     .executeBasicAuthenticationService(this.state.email, this.state.password)
     .then(() => {
         AuthenticationService.registerSuccessfulLogin(this.state.email, this.state.password)
-        this.props.history.push(`/CandidateDashboard`)
+        Axios.get(`http://localhost:8080/api/candidates/getId/${this.state.email}`)
+        .then((response)=>{
+          this.setState({id:response.data})
+          console.log(this.state.id)
+          this.props.history.push(`/CandidateDashboard/${this.state.id}`)
+        })
     }).catch(() => {
         this.setState({ showSuccessMessage: false })
         this.setState({ hasLoginFailed: true })
