@@ -8,6 +8,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import Axios from 'axios'
 
+
+
 export default class ViewJob extends React.Component{
 
     constructor(props) {
@@ -16,7 +18,8 @@ export default class ViewJob extends React.Component{
       }
 
     componentDidMount(){
-        const jobId=this.props.match.params.id;
+        const jobId=this.props.match.params.jobid;
+        console.log(jobId)
         Axios.get(`http://localhost:8080/api/jobspost/${jobId}`)
         .then((response)=>(
             console.log(response.data),
@@ -45,7 +48,7 @@ export default class ViewJob extends React.Component{
                                 </div>
                                 
                                 <div className="resume2">
-                                    <p className="input1" readOnly>{this.state.jobdetails.jobpostname}</p>
+                                    <p className="input1" readOnly>{this.state.jobdetails.jobposttitle}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -60,29 +63,29 @@ export default class ViewJob extends React.Component{
                                     <Card className="resume2 border-0">
                                         <Row>
                                             <Col>
-                                                <input className="input-type-date1" variant="light" id="dropdown-item-button" title="Job Category">
-                                                    
-                                                </input>
+                                                <p className="input-type-date1" variant="light" id="dropdown-item-button" title="Job Category">
+                                                   Category: {this.state.jobdetails.jobpostcategory}
+                                                </p>
                                             </Col>
 
                                             <Col>
-                                                <input className="input-type-date1" variant="light" id="dropdown-item-button" title="Job Type">
-                                                   
-                                                </input>
+                                                <p className="input-type-date1" variant="light" id="dropdown-item-button" title="Job Type">
+                                                    Type: {this.state.jobdetails.jobpostcategory}
+                                                </p>
                                             </Col> 
                                         </Row>                                    
                                         <br/>
                                         <Row>
                                             <Col>
-                                                <input className="input-type-date1" variant="light" id="dropdown-item-button" title="Experience (Optional)">
-                                                    
-                                                </input>
+                                                <p className="input-type-date1" variant="light" id="dropdown-item-button" title="Experience (Optional)">
+                                                    Experience: {this.state.jobdetails.jobpostexperience}
+                                                </p>
                                             </Col>
 
                                             <Col>
-                                                <input className="input-type-date1" variant="light" id="dropdown-item-button" title="Qualification">
-                                                
-                                                </input>
+                                                <p className="input-type-date1" variant="light" id="dropdown-item-button" title="Qualification">
+                                                    Qualification: {this.state.jobdetails.jobpostqualification}
+                                                </p>
                                             </Col>
                                         </Row>
                                         <br/>
@@ -98,7 +101,7 @@ export default class ViewJob extends React.Component{
                                 </div>
                                 
                                 <div className="resume2">
-                                    <input className="input1" readOnly></input>
+                                    <p className="input1" >{this.state.jobdetails.jobpostjobdesc}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -110,7 +113,7 @@ export default class ViewJob extends React.Component{
                                 </div>
                                 
                                 <div className="resume2">
-                                    <input className="input1" readOnly></input>
+                                    <p className="input1" readOnly>{this.state.jobdetails.jobpostresponsibilities}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -134,7 +137,7 @@ export default class ViewJob extends React.Component{
                                 </div>
                                 
                                 <div className="resume2">
-                                    <input className="input1" readOnly></input>
+                                    <p className="input1" >{this.state.jobdetails.jobpostbenefits}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -146,9 +149,9 @@ export default class ViewJob extends React.Component{
                                 </div>
                                 
                                 <div className="resume2">
-                                    <input className="input1-1"></input>
-                                    <input className="input1-2"></input><br/><br/><br/>
-                                    <input className="input1"></input>
+                                    <p className="input1-1">Name: {this.state.jobdetails.jobpostcompanyname}</p>
+                                    <p className="input1-2">WebSite: {this.state.jobdetails.jobpostwebaddress}</p><br/><br/><br/>
+                                    <p className="input1">Profile: {this.state.jobdetails.jobpostcompanyprofile}</p>
                                 </div>
                             </Col>
                         </Row>

@@ -9,13 +9,13 @@ export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class AuthenticationService {
 
     executeBasicAuthenticationService(username, password) {
-        return axios.get(`${API_URL}/api/candidates/homecan`,
+        return axios.get(`${API_URL}/api/Candidate/CandidateLogin`,
             { headers: { authorization: this.createBasicAuthToken(username, password) } })
     }
 
     executeJwtAuthenticationService(username, password) {
         console.log(username);
-        return axios.post(`${API_URL}/api/candidates/homecan`, {
+        return axios.post(`${API_URL}/api/Candidate/CandidateLogin`, {
             username,
             password
         })

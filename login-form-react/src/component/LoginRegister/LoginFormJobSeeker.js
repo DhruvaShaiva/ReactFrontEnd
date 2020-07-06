@@ -13,6 +13,7 @@ import AuthenticationService from '../Service/AuthenticationService'
 import Modal from 'react-bootstrap/Modal'; 
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
+import ReactDOM from 'react-dom';
 
 class Form extends Component {
   constructor(props){
@@ -42,13 +43,15 @@ class Form extends Component {
     .executeBasicAuthenticationService(this.state.email, this.state.password)
     .then(() => {
         AuthenticationService.registerSuccessfulLogin(this.state.email, this.state.password)
-        Axios.get(`http://localhost:8080/api/candidates/getId/${this.state.email}`)
+        Axios.get(`http://localhost:8080/api/Candidate/getId/${this.state.email}`)
         .then((response)=>{
+          console.log(response.data)
           this.setState({id:response.data})
           console.log(this.state.id)
           this.props.history.push(`/CandidateDashboard/${this.state.id}`)
         })
     }).catch(() => {
+      ReactDOM.render(<p>Invalid Username Or Password</p>, document.getElementById('message'));
         this.setState({ showSuccessMessage: false })
         this.setState({ hasLoginFailed: true })
     })
@@ -66,7 +69,7 @@ class Form extends Component {
            <h5>Welcome back! Login to your account</h5><br/>
            <Row>
             <Col>
-              <input type="text"  className="form-control" name="email" placeholder="Email Address" value={this.state.email} onChange={this.changeHandler} required />
+              <input type="text"  className="form-control" name="email" placeholder="Username" value={this.state.email} onChange={this.changeHandler} required />
             </Col>
           </Row>
           <br/>
@@ -95,6 +98,7 @@ class Form extends Component {
            <p id="status"></p>
             <button type="submit" className="btn btn-danger">Login</button>
              <button type="submit" className="btn btn-outline-danger" onClick={() => history.push('/RegisterFormCandidate')}>Sign up</button><br/><br/>
+             <p id="message"></p>
            </div><br/>
            <div>
               <p><b>Or Login With</b></p>

@@ -26,6 +26,7 @@ import CandidateJobs from './Candidate/Jobs'
 import CandidateResume from './Candidate/Resume'
 import CandidateSettings from './Candidate/Settings'
 import EditCandidateProfile from './Candidate/UpdateProfile'
+import ResumeSubmit from './Candidate/ResumeSubmit'
 
 import AdminDashboard from './Admin/Dashboard'
 import CandidateList from './Admin/CandidateList'
@@ -61,6 +62,7 @@ export default class Routes extends Component{
                     <Route path="/CandidateJobs" component={CandidateJobs} />
                     <Route path="/CandidateResume/:uid" component={CandidateResume} />
                     <Route path="/CandidateSettings/:uid" component={CandidateSettings} />
+                    <Route path="/CandidateResumeSubmitEdit/:uid" component={ResumeSubmit} />
 
                     <Route path="/ForgotPassword" component={ForgotPassword} />
 
