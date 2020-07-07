@@ -71,7 +71,7 @@ export default class RegisterFormCandidate extends Component{
         }
       };
 
-      axios.post("http://localhost:8080/api/candidates",candidate,config)
+      axios.post("http://localhost:8080/api/Candidate",candidate,config)
       .then(res => {
       if(res.data!=null){
         console.log(res.data);

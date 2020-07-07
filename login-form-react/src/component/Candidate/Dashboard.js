@@ -110,7 +110,7 @@ export default class Dashboard extends React.Component{
     };
 
 search=()=>{
-    Axios.get(`http://localhost:8080/api/jobspost`)
+    Axios.get(`http://localhost:8080/api/jobspost/search?search=${this.state.search}`)
     .then((response)=>
         this.setState({ 
             noOfJobs:response.data.length ,
@@ -154,7 +154,7 @@ search=()=>{
                             <InputGroup>
                             <FormControl placeholder="Search" name="search" value={search} onChange={this.searchChange}/>
                             <InputGroup.Append>
-                              <Button size="sm" variant="outline-info" type="button">
+                              <Button size="sm" variant="outline-info" type="button" onClick={this.search}>
                                 <FontAwesomeIcon icon={faSearch}/>
                               </Button>
                               <Button size="sm" variant="outline-danger" type="button" onClick={this.cancelSearch}>
